@@ -5,4 +5,6 @@
     <string name="empty"> </string>
     <string name="lblRestartQuizText">Try Again</string>
     <string name="lblExitText">Quit</string>
+    <string name="txtLoadingMessage">Loading Questions</string>
+    <string name="txtLoadingQuestion">How Geeky Are You?</string>
 </resources>
