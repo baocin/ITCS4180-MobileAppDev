@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Homework03</string>
+    <string name="btnStartQuizText">Start Quiz</string>
+    <string name="lblQuizResultText">Quiz Result:</string>
+    <string name="empty"> </string>
+    <string name="lblRestartQuizText">Try Again</string>
+    <string name="lblExitText">Quit</string>
 </resources>
