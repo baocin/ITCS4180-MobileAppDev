@@ -10,13 +10,13 @@ import java.util.HashMap;
  * Created by aoi on 2/20/16.
  */
 public class Question implements Parcelable {
-    int id;
+    int qid;
     String questionText;
     HashMap<String, Integer> options;
     String imageURL;
 
     protected Question(Parcel in) {
-        id = in.readInt();
+        qid = in.readInt();
         questionText = in.readString();
         imageURL = in.readString();
         options = (HashMap<String, Integer>) in.readBundle().getSerializable("options");
@@ -35,7 +35,7 @@ public class Question implements Parcelable {
     };
 
     public Question() {
-        id = 0;
+        qid = 0;
         questionText = "";
         options = new HashMap<String, Integer>();
         imageURL = "";
@@ -49,7 +49,7 @@ public class Question implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
-        dest.writeInt(id);
+        dest.writeInt(qid);
         dest.writeString(questionText);
         dest.writeString(imageURL);
 
@@ -59,12 +59,12 @@ public class Question implements Parcelable {
 
     }
 
-    public int getId() {
-        return id;
+    public int getQid() {
+        return qid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setQid(int id) {
+        this.qid = id;
     }
 
     public String getQuestionText() {
@@ -93,5 +93,19 @@ public class Question implements Parcelable {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "qid=" + qid +
+                ", questionText='" + questionText + '\'' +
+                ", options=" + options.toString() +
+                ", imageURL='" + imageURL + '\'' +
+                '}';
+    }
+
+    public int getOption(String key) {
+        return this.options.get(key);
     }
 }

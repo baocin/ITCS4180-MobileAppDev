@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         autoStartQuiz = new Timer("autoStart");
         autoStartQuiz.schedule(startQuiz, 8000);
 
-
     }
 
     public void startQuiz(){
@@ -46,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.btnStartQuiz:
+                autoStartQuiz.cancel();
                 startQuiz();
                 break;
         }

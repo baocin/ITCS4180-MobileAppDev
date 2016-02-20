@@ -7,4 +7,6 @@
     <string name="lblExitText">Quit</string>
     <string name="txtLoadingMessage">Loading Questions</string>
     <string name="txtLoadingQuestion">How Geeky Are You?</string>
+    <string name="lblNext">Next</string>
+    <string name="blankAnswerErrorMessage">Please select an answer!</string>
 </resources>
