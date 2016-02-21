@@ -46,8 +46,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 selectedRadioButton = true;
                 int questionNumber = (int)group.getTag();
                 Log.d("QuestionNum:", questionNumber+"");
-                Log.d("child:", checkedId+"");
-                int points = (int)group.getChildAt(checkedId-1).getTag();
+                Log.d("child:", checkedId-1 +"");
+                Log.d("obj?", group.findViewById(checkedId).getTag().toString());
+//                int points = (int)group.getChildAt(checkedId-1).getTag();
+                int points = (int) group.findViewById(checkedId).getTag();
                 Log.d("points:", points+"");
                 answerList[questionNumber] = points;
             }
@@ -121,9 +123,10 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     Intent i = new Intent(getApplicationContext(), Results.class);
                     i.putExtra("answerList", answerList);
                     startActivity(i);
-                }
+                }else {
 //                currentQuestionID %= NUM_QUESTIONS;
-                populate(questions.get(currentQuestionID));
+                    populate(questions.get(currentQuestionID));
+                }
                 break;
             case R.id.btnQuit:
 //                finish();
