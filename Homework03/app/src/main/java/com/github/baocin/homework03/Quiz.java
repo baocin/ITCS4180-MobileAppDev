@@ -1,7 +1,9 @@
 package com.github.baocin.homework03;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -103,6 +105,18 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         rdg.removeAllViews();
         for (String key : q.getOptions().keySet()){
             RadioButton rb = new RadioButton(getApplicationContext());
+            rb.setTextColor(Color.BLACK);
+            rb.setButtonTintList(new ColorStateList(
+                    new int[][]{
+                            new int[]{-android.R.attr.state_checked},
+                            new int[]{android.R.attr.state_checked}
+                    },
+                    new int[]{
+
+                            Color.BLACK
+                            , Color.rgb (242,81,112),
+                    }
+            ));
             rb.setText(key);
             rb.setTag(q.getOption(key));
             Log.d("Made option:", rb.getText() + "  " + rb.getTag());
