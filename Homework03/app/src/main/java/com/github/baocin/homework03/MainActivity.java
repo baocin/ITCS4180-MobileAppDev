@@ -18,9 +18,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView imgSplash = (ImageView) findViewById(R.id.imgSplash);
-        imgSplash.setImageResource(R.drawable.splash_screen);
-
         Button btnStartQuiz = (Button) findViewById(R.id.btnStartQuiz);
         btnStartQuiz.setOnClickListener(this);
 

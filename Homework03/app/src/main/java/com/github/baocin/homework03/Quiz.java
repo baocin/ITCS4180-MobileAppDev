@@ -57,6 +57,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
+        Log.d("Passed questions:", questions.toString());
         populate(0);
 
         findViewById(R.id.btnNext).setOnClickListener(this);
