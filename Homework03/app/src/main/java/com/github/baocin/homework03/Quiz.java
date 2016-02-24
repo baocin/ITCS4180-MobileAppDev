@@ -1,3 +1,10 @@
+//File: Quiz
+//Homework 03
+//2-22-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
+
 package com.github.baocin.homework03;
 
 import android.content.Intent;
@@ -5,11 +12,13 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -29,6 +38,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     private ImageView questionImage;
     private int[] answerList;
     private boolean selectedRadioButton;
+    private ProgressBar loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +50,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         lblQuestionNumber = ((TextView)findViewById(R.id.lblQuestionNumber));
         txtDescription = ((TextView)findViewById(R.id.txtDescription));
         questionImage = ((ImageView) findViewById(R.id.imgQuestionImage));
+        loadingBar = (ProgressBar) findViewById(R.id.pbLoadingBar);
+        loadingBar.setVisibility(View.VISIBLE);
 
         questions = (ArrayList<Question>) getIntent().getExtras().get("questions");
         rdg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -86,9 +98,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
         if (!q.getImageURL().equals("")) {
             AsyncTask<String, Void, Bitmap> asyncResult = new GetImage(this).execute(q.getImageURL());
+
             try{
                 Bitmap image = asyncResult.get();
                 questionImage.setImageBitmap(image);
+                loadingBar.setVisibility(View.INVISIBLE);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -107,17 +121,19 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         for (String key : q.getOptions().keySet()){
             RadioButton rb = new RadioButton(getApplicationContext());
             rb.setTextColor(Color.BLACK);
-            rb.setButtonTintList(new ColorStateList(
-                    new int[][]{
-                            new int[]{-android.R.attr.state_checked},
-                            new int[]{android.R.attr.state_checked}
-                    },
-                    new int[]{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                rb.setButtonTintList(new ColorStateList(
+                        new int[][]{
+                                new int[]{-android.R.attr.state_checked},
+                                new int[]{android.R.attr.state_checked}
+                        },
+                        new int[]{
 
-                            Color.BLACK
-                            , Color.rgb (242,81,112),
-                    }
-            ));
+                                Color.BLACK
+                                , Color.rgb (242,81,112),
+                        }
+                ));
+            }
             rb.setText(key);
             rb.setTag(q.getOption(key));
             Log.d("Made option:", rb.getText() + "  " + rb.getTag());

@@ -1,3 +1,9 @@
+//File: GetQuiz
+//Homework 03
+//2-22-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
 package com.github.baocin.homework03;
 
 import android.app.ProgressDialog;
@@ -19,31 +25,6 @@ import java.util.ArrayList;
 public class GetQuiz extends AsyncTask<Void, Void, ArrayList<Question>> {
     final String apiURL = "http://dev.theappsdr.com/apis/spring_2016/hw3/index.php";
     ArrayList<Question> questions = new ArrayList<Question>();
-    ProgressDialog pDialog = null;
-
-    public GetQuiz(){
-
-    }
-
-    public GetQuiz(Welcome welcome){
-        Log.d("Constructor", "using welcome" + welcome.getPackageName());
-        pDialog = new ProgressDialog(welcome);
-        pDialog.setMessage(welcome.getResources().getString(R.string.txtLoadingMessage));
-        pDialog.setIndeterminate(false);
-
-    }
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        pDialog.show();
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList<Question> questions) {
-        super.onPostExecute(questions);
-        pDialog.hide();
-    }
 
     @Override
     protected ArrayList<Question> doInBackground(Void... params) {
@@ -129,6 +110,8 @@ public class GetQuiz extends AsyncTask<Void, Void, ArrayList<Question>> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
         }
         return questions;
     }

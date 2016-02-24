@@ -1,3 +1,9 @@
+//File: MainActivity
+//Homework 03
+//2-22-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
 package com.github.baocin.homework03;
 
 import android.content.Intent;
