@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Homework04</string>
+    <string name="inSearchHint">Find Movies</string>
+    <string name="btnSubmitText">Search IMDb.com</string>
+    <string name="loadingDialogMessage">Loading Movie List...</string>
+    <string name="empty" />
 </resources>
