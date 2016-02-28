@@ -1,3 +1,10 @@
+//File: MoviesUtil
+//Homework 04
+//Group 18
+//2-27-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
 package com.github.baocin.homework04;
 
 import org.json.JSONArray;
