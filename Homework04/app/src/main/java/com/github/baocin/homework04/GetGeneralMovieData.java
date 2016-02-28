@@ -4,8 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TextView;
 
 import org.json.JSONException;
 
@@ -24,10 +28,10 @@ import java.util.ArrayList;
 public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.github.baocin.homework04.Movie>> {
     private final ProgressDialog progressDialog;
     final String apiURL = "http://www.omdbapi.com/";
-    private final Context context;
+    private final SearchMovie context;
     private final RelativeLayout searchLayout;
 
-    public GetGeneralMovieData(Context c, RelativeLayout rl){
+    public GetGeneralMovieData(SearchMovie c, RelativeLayout rl){
         context = c;
         searchLayout = rl;
         progressDialog = new ProgressDialog(context);
@@ -44,6 +48,20 @@ public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.g
     @Override
     protected void onPostExecute(ArrayList<Movie> movies) {
         super.onPostExecute(movies);
+        TableLayout movieScrollList = (TableLayout) searchLayout.findViewById(R.id.movieList);
+        int id = 0;
+        for (Movie movie : movies){
+            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View item = inflater.inflate(R.layout.movie_list_item, null);
+            item.setId(id);
+            item.setTag(movie.getImdbID());
+            ((TextView) item.findViewById(R.id.itemName)).setText(movie.getTitle() + "  (" + movie.getYear() + ")");
+            item.setOnClickListener(context);
+            movieScrollList.addView(item);
+
+            id += 1;
+        }
+
         progressDialog.hide();
     }
 

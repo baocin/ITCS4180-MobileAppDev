@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,10 +24,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()){
             case R.id.btnSubmit:
                 String searchTerm = ((TextView) findViewById(R.id.inSearchTerm)).getText().toString();
-                Intent i = new Intent(MainActivity.this, SearchMovie.class);
-                i.putExtra("searchTerm", searchTerm);
-                startActivity(i);
+                if (searchTerm.length() >= 1) {
+                    Intent i = new Intent(MainActivity.this, SearchMovie.class);
+                    i.putExtra("searchTerm", searchTerm);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Please type in a query!", Toast.LENGTH_SHORT).show();
+                }
                 break;
+
         }
     }
 }

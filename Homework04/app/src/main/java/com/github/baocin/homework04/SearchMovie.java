@@ -31,18 +31,7 @@ public class SearchMovie extends AppCompatActivity implements View.OnClickListen
             e.printStackTrace();
         }
 
-        TableLayout movieScrollList = (TableLayout) findViewById(R.id.movieList);
-        int id = 0;
-        for (Movie movie : moviesList){
-            View item = getLayoutInflater().inflate(R.layout.movie_list_item, null);
-            item.setId(id);
-            item.setTag(movie.getImdbID());
-            ((TextView) item.findViewById(R.id.itemName)).setText(movie.getTitle() + "  (" + movie.getYear() + ")");
-            item.setOnClickListener(this);
-            movieScrollList.addView(item);
 
-            id += 1;
-        }
     }
 
     @Override
@@ -51,10 +40,6 @@ public class SearchMovie extends AppCompatActivity implements View.OnClickListen
         for (Movie m : moviesList){
             if (m.getImdbID().equals(imdbID)){
                 Intent i = new Intent(SearchMovie.this, MovieDetails.class);
-//                Bundle bun = new Bundle();
-//                bun.putParcelableArrayList("movieList", moviesList);
-
-
                 i.putExtra("movieList", moviesList);
                 i.putExtra("movie", m);
                 startActivity(i);
