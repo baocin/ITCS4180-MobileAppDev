@@ -23,7 +23,7 @@ public class MoviesUtil {
                 JSONObject movieJSONObject = movieJSONArray.getJSONObject(i);
                 Movie movie = new Movie();
                 movie.setTitle(movieJSONObject.getString("Title"));
-                movie.setYear(new SimpleDateFormat("yyyy").parse(movieJSONObject.getString("Year")));
+                movie.setYear(movieJSONObject.getString("Year"));
                 movie.setImdbID(movieJSONObject.getString("imdbID"));
                 movie.setType(movieJSONObject.getString("Type"));
                 movie.setPoster(movieJSONObject.getString("Poster"));
@@ -32,6 +32,28 @@ public class MoviesUtil {
             }
 
             return movieList;
+        }
+    }
+
+    static public class MovieJSONParser {
+        static Movie  parseMovie(String in) throws JSONException, ParseException {
+            Movie movie = new Movie();
+            JSONObject root = new JSONObject(in);
+            JSONObject movieJSONObject = root;
+            movie.setTitle(movieJSONObject.getString("Title"));
+            movie.setYear(movieJSONObject.getString("Year"));
+            movie.setImdbID(movieJSONObject.getString("imdbID"));
+            movie.setType(movieJSONObject.getString("Type"));
+            movie.setPoster(movieJSONObject.getString("Poster"));
+            movie.setReleased(movieJSONObject.getString("Released"));
+            movie.setGenre(movieJSONObject.getString("Genre"));
+            movie.setDirector(movieJSONObject.getString("Director"));
+            movie.setActors(movieJSONObject.getString("Actors").split(","));
+            movie.setPlot(movieJSONObject.getString("Plot"));
+            movie.setImdbRating(movieJSONObject.getString("imdbRating"));
+
+
+            return movie;
         }
     }
 }

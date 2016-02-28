@@ -1,9 +1,12 @@
 package com.github.baocin.homework04;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -20,9 +23,8 @@ public class SearchMovie extends AppCompatActivity implements View.OnClickListen
 
         String searchTerm = getIntent().getExtras().getString("searchTerm");
 
-
         try {
-            moviesList = new GetGeneralMovieData(this).execute(searchTerm).get();
+            moviesList = new GetGeneralMovieData(this, (RelativeLayout) findViewById(R.id.baseLayout)).execute(searchTerm).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -35,7 +37,7 @@ public class SearchMovie extends AppCompatActivity implements View.OnClickListen
             View item = getLayoutInflater().inflate(R.layout.movie_list_item, null);
             item.setId(id);
             item.setTag(movie.getImdbID());
-            ((TextView) findViewById(R.id.itemName)).setText(movie.getTitle() + "  (" + movie.getYear() + ")");
+            ((TextView) item.findViewById(R.id.itemName)).setText(movie.getTitle() + "  (" + movie.getYear() + ")");
             item.setOnClickListener(this);
             movieScrollList.addView(item);
 
@@ -49,7 +51,12 @@ public class SearchMovie extends AppCompatActivity implements View.OnClickListen
         for (Movie m : moviesList){
             if (m.getImdbID().equals(imdbID)){
                 Intent i = new Intent(SearchMovie.this, MovieDetails.class);
+//                Bundle bun = new Bundle();
+//                bun.putParcelableArrayList("movieList", moviesList);
+
+
                 i.putExtra("movieList", moviesList);
+                i.putExtra("movie", m);
                 startActivity(i);
             }
         }

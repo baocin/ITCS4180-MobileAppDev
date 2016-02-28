@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.baocin.homework04.MainActivity">
+    tools:context="com.github.baocin.homework04.MainActivity"
+    android:id="@+id/baseLayout">
 
     <ImageView
         android:layout_width="fill_parent"

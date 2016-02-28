@@ -1,8 +1,11 @@
 package com.github.baocin.homework04;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import org.json.JSONException;
 
@@ -21,11 +24,15 @@ import java.util.ArrayList;
 public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.github.baocin.homework04.Movie>> {
     private final ProgressDialog progressDialog;
     final String apiURL = "http://www.omdbapi.com/";
+    private final Context context;
+    private final RelativeLayout searchLayout;
 
-    public GetGeneralMovieData(SearchMovie sm){
-        progressDialog = new ProgressDialog(sm);
+    public GetGeneralMovieData(Context c, RelativeLayout rl){
+        context = c;
+        searchLayout = rl;
+        progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage(sm.getString(R.string.loadingDialogMessage));
+        progressDialog.setMessage(context.getString(R.string.loadingDialogMessage));
     }
     
     @Override

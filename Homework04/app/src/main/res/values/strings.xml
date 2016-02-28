@@ -4,4 +4,11 @@
     <string name="btnSubmitText">Search IMDb.com</string>
     <string name="loadingDialogMessage">Loading Movie List...</string>
     <string name="empty" />
+    <string name="detailReleaseDate"></string>
+    <string name="detailReleaseDateLabel">Release Date: </string>
+    <string name="detailGenreLabel">Genre: </string>
+    <string name="detailDirectorLabel">Director: </string>
+    <string name="detailActorsLabel">Actors: </string>
+    <string name="detailPlotLabel">Plot: </string>
+    <string name="detailFinishLabel">Finish</string>
 </resources>

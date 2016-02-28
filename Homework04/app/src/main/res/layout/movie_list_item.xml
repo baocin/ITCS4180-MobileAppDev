@@ -8,6 +8,5 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/empty"
         android:id="@+id/itemName"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal" />
+        android:autoText="false" />
 </TableRow>

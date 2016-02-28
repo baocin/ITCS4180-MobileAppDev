@@ -1,22 +1,27 @@
 package com.github.baocin.homework04;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
  * Created by aoi on 2/24/2016.
  */
-public class Movie {
+public class Movie implements Serializable{
     String title;
     String type;
     String poster;
-    Date released;
+    String released;
     String genre;
     String director;
     ArrayList<String> actors;
     String plot;
     String imdbRating;
-    Date year;
+    String year;
     String imdbID;
 
     public Movie() {
@@ -33,6 +38,33 @@ public class Movie {
         imdbID = null;
 
     }
+
+    protected Movie(Parcel in) {
+        title = in.readString();
+        type = in.readString();
+        poster = in.readString();
+        released = in.readString();
+        genre = in.readString();
+        director = in.readString();
+        actors = in.createStringArrayList();
+        actors = (ArrayList<String>) in.readSerializable();
+        plot = in.readString();
+        imdbRating = in.readString();
+        year = in.readString();
+        imdbID = in.readString();
+    }
+
+//    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
+//        @Override
+//        public Movie createFromParcel(Parcel in) {
+//            return new Movie(in);
+//        }
+//
+//        @Override
+//        public Movie[] newArray(int size) {
+//            return new Movie[size];
+//        }
+//    };
 
     @Override
     public String toString() {
@@ -75,11 +107,11 @@ public class Movie {
         this.poster = poster;
     }
 
-    public Date getReleased() {
+    public String getReleased() {
         return released;
     }
 
-    public void setReleased(Date released) {
+    public void setReleased(String released) {
         this.released = released;
     }
 
@@ -107,6 +139,10 @@ public class Movie {
         this.actors = actors;
     }
 
+    public void setActors(String[] actors) {
+        this.actors = new ArrayList<String>(Arrays.asList(actors));
+    }
+
     public String getPlot() {
         return plot;
     }
@@ -123,11 +159,11 @@ public class Movie {
         this.imdbRating = imdbRating;
     }
 
-    public Date getYear() {
+    public String getYear() {
         return year;
     }
 
-    public void setYear(Date year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
@@ -138,4 +174,26 @@ public class Movie {
     public void setImdbID(String imdbID) {
         this.imdbID = imdbID;
     }
+
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeString(title);
+//        dest.writeString(type);
+//        dest.writeString(poster);
+//        dest.writeString(released);
+//        dest.writeString(genre);
+//        dest.writeString(director);
+//        dest.writeSerializable(actors);
+//        dest.writeString(plot);
+//        dest.writeString(imdbRating);
+//        dest.writeString(year);
+//        dest.writeString(imdbID);
+//    }
+
+
 }

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">IMDb Movie App</string>
+    <string name="searchIMDB">Search IMDb.com</string>
+</resources>
