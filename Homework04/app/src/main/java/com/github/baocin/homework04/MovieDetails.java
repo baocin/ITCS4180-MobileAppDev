@@ -1,9 +1,12 @@
 package com.github.baocin.homework04;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.webkit.*;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -31,8 +34,8 @@ public class MovieDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currentIndex = currentIndex - 1;
-                if(currentIndex < 0)
-                    currentIndex = movieList.size()-1;
+                if (currentIndex < 0)
+                    currentIndex = movieList.size() - 1;
                 new GetMovieData(MovieDetails.this, (RelativeLayout) findViewById(R.id.baseLayout)).execute(movieList.get(currentIndex).getImdbID());
 
             }
@@ -52,6 +55,15 @@ public class MovieDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        ((ImageView)findViewById(R.id.detailPoster)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MovieDetails.this, WebView.class);
+                i.putExtra("url", movieList.get(currentIndex).getUrl());
+                startActivity(i);
             }
         });
 

@@ -59,10 +59,11 @@ public class GetMovieData extends AsyncTask<String, Void, Movie> {
         ((TextView) searchLayout.findViewById(R.id.detailDirector)).setText(movie.getDirector());
         ((TextView) searchLayout.findViewById(R.id.detailActors)).setText(movie.actors.toString().substring(1, movie.actors.toString().length() - 1));
 
+        RatingBar rb = ((RatingBar) searchLayout.findViewById(R.id.detailRating));
         try{
-            ((RatingBar) searchLayout.findViewById(R.id.detailRating)).setRating(Float.parseFloat(movie.getImdbRating()));
+            rb.setRating(Float.parseFloat(movie.getImdbRating()) / 2);
         }catch (NumberFormatException e){
-            ((RatingBar) searchLayout.findViewById(R.id.detailRating)).setRating(0);
+            rb.setRating(0);
         }
         ((TextView) searchLayout.findViewById(R.id.detailPlot)).setText(movie.getPlot());
         try {

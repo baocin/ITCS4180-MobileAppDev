@@ -175,6 +175,10 @@ public class Movie implements Serializable{
         this.imdbID = imdbID;
     }
 
+    public String getUrl() {
+        return "http://m.imdb.com/title/" + imdbID;
+    }
+
 //    @Override
 //    public int describeContents() {
 //        return 0;
