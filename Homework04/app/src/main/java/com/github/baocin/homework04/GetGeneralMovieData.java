@@ -28,6 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by aoi on 2/24/2016.
@@ -57,6 +58,7 @@ public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.g
         super.onPostExecute(movies);
         TableLayout movieScrollList = (TableLayout) searchLayout.findViewById(R.id.movieList);
         int id = 0;
+        Collections.sort(movies);
         for (Movie movie : movies){
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View item = inflater.inflate(R.layout.movie_list_item, null);

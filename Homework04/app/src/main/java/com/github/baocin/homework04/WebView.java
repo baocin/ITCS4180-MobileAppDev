@@ -8,11 +8,14 @@
 package com.github.baocin.homework04;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class WebView extends AppCompatActivity {
     android.webkit.WebView wv;
@@ -26,7 +29,23 @@ public class WebView extends AppCompatActivity {
 
         wv = (android.webkit.WebView) findViewById(R.id.webview);
         wv.loadUrl(url);
-        wv.setWebViewClient(new WebViewClient());
+        wv.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public boolean shouldOverrideUrlLoading(android.webkit.WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+
+            }
+
+            @Override
+            public void onPageStarted(android.webkit.WebView view, String url, Bitmap favicon) {
+                ((TextView)findViewById(R.id.urlBar)).setText(url);
+                ((ImageView)findViewById(R.id.favicon)).setImageBitmap(favicon);
+                super.onPageStarted(view, url, favicon);
+            }
+
+        });
 
     }
 }

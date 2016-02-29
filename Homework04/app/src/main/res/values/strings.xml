@@ -11,4 +11,5 @@
     <string name="detailActorsLabel">Actors: </string>
     <string name="detailPlotLabel">Plot: </string>
     <string name="detailFinishLabel">Finish</string>
+    <string name="loadingMovieMessage">Loading Movie...</string>
 </resources>

@@ -11,6 +11,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -18,7 +20,7 @@ import java.util.Date;
 /**
  * Created by aoi on 2/24/2016.
  */
-public class Movie implements Serializable{
+public class Movie implements Serializable, Comparable<Movie>{
     String title;
     String type;
     String poster;
@@ -186,25 +188,10 @@ public class Movie implements Serializable{
         return "http://m.imdb.com/title/" + imdbID;
     }
 
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(title);
-//        dest.writeString(type);
-//        dest.writeString(poster);
-//        dest.writeString(released);
-//        dest.writeString(genre);
-//        dest.writeString(director);
-//        dest.writeSerializable(actors);
-//        dest.writeString(plot);
-//        dest.writeString(imdbRating);
-//        dest.writeString(year);
-//        dest.writeString(imdbID);
-//    }
+    @Override
+    public int compareTo(Movie another) {
+        return another.getYear().compareTo(this.getYear());
+    }
 
 
 }

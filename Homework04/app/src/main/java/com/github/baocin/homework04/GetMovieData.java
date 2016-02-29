@@ -44,7 +44,7 @@ public class GetMovieData extends AsyncTask<String, Void, Movie> {
         searchLayout = rl;
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage(context.getString(R.string.loadingDialogMessage));
+        progressDialog.setMessage(c.getString(R.string.loadingMovieMessage));
     }
 
     @Override
