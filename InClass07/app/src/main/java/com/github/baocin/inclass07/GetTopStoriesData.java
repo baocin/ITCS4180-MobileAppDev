@@ -1,5 +1,5 @@
 //File: GetGeneralMovieData
-//Homework 04
+//InClass07
 //Group 18
 //2-27-2016
 //Praveenkumar Sangalad
@@ -9,9 +9,14 @@ package com.github.baocin.inclass07;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -37,16 +42,15 @@ public class GetTopStoriesData extends AsyncTask<String, Void, ArrayList<Story>>
     final String apiKey = "144002450f6f2c23673be6692276975d:7:74582505";
     private final TopStories context;
     private final RelativeLayout searchLayout;
-    ArrayList<Story> stories = new ArrayList<Story>();
 
-    public GetTopStoriesData(TopStories c, RelativeLayout rl){
+    public GetTopStoriesData(TopStories c, RelativeLayout rl) {
         context = c;
         searchLayout = rl;
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Loading Stories");
     }
-    
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -54,49 +58,62 @@ public class GetTopStoriesData extends AsyncTask<String, Void, ArrayList<Story>>
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Story> story) {
-        super.onPostExecute(stories);
-//        TableLayout movieScrollList = (TableLayout) searchLayout.findViewById(R.id.movieList);
-//        int id = 0;
-//        Collections.sort(movies);
-//        for (Movie movie : movies){
-//            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            View item = inflater.inflate(R.layout.movie_list_item, null);
-//            item.setId(id);
-//            item.setTag(movie.getImdbID());
-//            ((TextView) item.findViewById(R.id.itemName)).setText(movie.getTitle() + "  (" + movie.getYear() + ")");
-//            item.setOnClickListener(context);
-//            movieScrollList.addView(item);
-//
-//            id += 1;
-//        }
+    protected void onPostExecute(ArrayList<Story> stories) {
+        final ArrayList<Story> stories2 = stories;
 
+        StoryAdapter adapter = new StoryAdapter(searchLayout.getContext(), R.layout.storyitem, stories);
+        ListView storiesLV = (ListView) searchLayout.findViewById(R.id.listView);
+        storiesLV.setAdapter(adapter);
+
+        storiesLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d("Clicked", ((TextView) view.findViewById(R.id.newsTitle)).getText() + "");
+                Intent i = new Intent(searchLayout.getContext(), DetailsActivity.class);
+                i.putExtra("story", stories2.get(position));
+                context.startActivity(i);
+            }
+        });
+
+        String ss = "";
+        for (int i = 0; i < 999999; i++){
+            for (int k = 0; k < 200; k++){
+
+            }
+        }
         progressDialog.hide();
+
+        super.onPostExecute(stories);
     }
 
     @Override
     protected ArrayList<Story> doInBackground(String... params) {
         try {
-            RequestParams rp = new RequestParams(apiURL);
-            rp.addParam("response-format", "json");
+            RequestParams rp = new RequestParams(apiURL + params[0] + ".json");
+//            rp.addParam("response-format", ".json");
             rp.addParam("api-key", apiKey);
-            rp.addParam("section", params[0]);
+//            Log.d("url param", params[0] + "");
+//            rp.addParam("section", params[0]);
+
+            Log.d("encoded url", rp.getEncodedURL());
 
             URL url = new URL(rp.getEncodedURL());
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
             con.connect();
             int statusCode = con.getResponseCode();
-            if (statusCode == HttpURLConnection.HTTP_OK){
+            Log.d("connection status", statusCode + "");
+            if (statusCode == HttpURLConnection.HTTP_OK) {
+
                 BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 StringBuilder sb = new StringBuilder();
                 String line = reader.readLine();
-                while(line != null){
+                while (line != null) {
                     sb.append(line);
                     line = reader.readLine();
 
                 }
-//                Log.d("demo", sb.toString());
+                Log.d("demo", sb.toString());
                 return StoryUtil.StoryJSONParser.parseStories(sb.toString());
             }
         } catch (MalformedURLException e) {

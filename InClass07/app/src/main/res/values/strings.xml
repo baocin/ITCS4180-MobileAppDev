@@ -2,6 +2,7 @@
     <string name="app_name">InClass07</string>
     <string name="submitButton">Submit</string>
     <string name="empty" />
+    <string name="thisIsHardCoded">Abstract</string>
     <string-array name="sections">
         <item>home</item>
         <item>world</item>

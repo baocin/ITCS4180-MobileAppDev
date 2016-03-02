@@ -10,11 +10,12 @@
     tools:context="com.example.praveen_sangalad.inclass07new.MainActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textViewStoryTitle"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
 
     <TextView
         android:layout_width="match_parent"
@@ -22,7 +23,8 @@
         android:id="@+id/textViewStoryByLine"
         android:layout_below="@+id/textViewStoryTitle"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
 
     <ImageView
         android:layout_width="200dp"
@@ -39,7 +41,8 @@
         android:layout_below="@+id/imageView"
         android:layout_toLeftOf="@+id/imageView"
         android:layout_toStartOf="@+id/imageView"
-        android:layout_marginTop="41dp" />
+        android:layout_marginTop="41dp"
+        android:text="@string/thisIsHardCoded" />
 
     <TextView
         android:layout_width="wrap_content"

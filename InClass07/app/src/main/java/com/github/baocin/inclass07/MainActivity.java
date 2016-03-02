@@ -1,4 +1,12 @@
+//File: GetGeneralMovieData
+//InClass07
+//Group 18
+//2-27-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
 package com.github.baocin.inclass07;
+
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,12 +34,17 @@ public class MainActivity extends AppCompatActivity {
     // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        spinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String [] sections = getResources().getStringArray(R.array.sections);
                 topic = sections[position];
 
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                topic = "";
             }
         });
 

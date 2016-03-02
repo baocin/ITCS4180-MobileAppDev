@@ -1,11 +1,12 @@
 package com.github.baocin.inclass07;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by aoi on 2/29/2016.
  */
-public class Story {
+public class Story implements Serializable{
     String title;
     String byline;
     String abstractString;

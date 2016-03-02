@@ -1,9 +1,16 @@
 package com.github.baocin.inclass07;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class TopStories extends AppCompatActivity {
@@ -15,13 +22,7 @@ public class TopStories extends AppCompatActivity {
 
         String section = getIntent().getExtras().getString("section");
 
-        try {
-            new GetTopStoriesData(this, (RelativeLayout) findViewById(R.id.baseLayout)).execute(section).get();
+        new GetTopStoriesData(this, (RelativeLayout) findViewById(R.id.baseLayout)).execute(section);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
 }

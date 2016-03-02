@@ -1,5 +1,5 @@
 //File: RequestParams
-//Homework 04
+//INCLAS 07
 //Group 18
 //2-27-2016
 //Praveenkumar Sangalad
