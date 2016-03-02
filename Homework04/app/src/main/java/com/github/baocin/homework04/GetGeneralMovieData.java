@@ -10,6 +10,9 @@ package com.github.baocin.homework04;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,53 +36,31 @@ import java.util.Collections;
 /**
  * Created by aoi on 2/24/2016.
  */
-public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.github.baocin.homework04.Movie>> {
+public class GetGeneralMovieData implements Runnable{
     private final ProgressDialog progressDialog;
     final String apiURL = "http://www.omdbapi.com/";
-    private final SearchMovie context;
-    private final RelativeLayout searchLayout;
+    private final Context context;
+    private final String searchTerm;
+    private final Handler handler;
 
-    public GetGeneralMovieData(SearchMovie c, RelativeLayout rl){
+    public GetGeneralMovieData(Context c, Handler handler, String s){
         context = c;
-        searchLayout = rl;
-        progressDialog = new ProgressDialog(context);
+        searchTerm = s;
+        this.handler = handler;
+
+        progressDialog = new ProgressDialog(c);
         progressDialog.setCancelable(false);
         progressDialog.setMessage(context.getString(R.string.loadingDialogMessage));
-    }
-    
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
         progressDialog.show();
     }
 
-    @Override
-    protected void onPostExecute(ArrayList<Movie> movies) {
-        super.onPostExecute(movies);
-        TableLayout movieScrollList = (TableLayout) searchLayout.findViewById(R.id.movieList);
-        int id = 0;
-        Collections.sort(movies);
-        for (Movie movie : movies){
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View item = inflater.inflate(R.layout.movie_list_item, null);
-            item.setId(id);
-            item.setTag(movie.getImdbID());
-            ((TextView) item.findViewById(R.id.itemName)).setText(movie.getTitle() + "  (" + movie.getYear() + ")");
-            item.setOnClickListener(context);
-            movieScrollList.addView(item);
 
-            id += 1;
-        }
 
-        progressDialog.hide();
-    }
-
-    @Override
-    protected ArrayList<com.github.baocin.homework04.Movie> doInBackground(String... params) {
+    protected ArrayList<com.github.baocin.homework04.Movie> getMovies(String s) {
         try {
             RequestParams rp = new RequestParams(apiURL);
             rp.addParam("type", "movie");
-            rp.addParam("s", params[0]);
+            rp.addParam("s", s);
 
             URL url = new URL(rp.getEncodedURL());
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -95,7 +76,6 @@ public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.g
                     line = reader.readLine();
 
                 }
-//                Log.d("demo", sb.toString());
                 return MoviesUtil.MoviesJSONParser.parseMovies(sb.toString());
             }
         } catch (MalformedURLException e) {
@@ -110,4 +90,26 @@ public class GetGeneralMovieData extends AsyncTask<String, Void, ArrayList<com.g
         return null;
 
     }
+    @Override
+    public void run() {
+        ArrayList<Movie> movies = getMovies(searchTerm);
+
+        String s = "";
+        for(int i = 0; i < 100; i++){
+            for (int k = 0; k < 200; k++) {
+                s += " ";
+            }
+        }
+
+
+        Message msg = new Message();
+        Bundle b =new Bundle();
+        b.putSerializable("movies", movies);
+        msg.setData(b);
+        handler.sendMessage(msg);
+
+        //Dismiss Dialog
+        progressDialog.dismiss();
+    }
+
 }
