@@ -1,3 +1,10 @@
+//File: DetailsActivity
+//Homework 05
+//Group 18
+//3-08-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
 package com.example.gbl.homework5;
 
 import android.os.Bundle;
@@ -51,26 +58,6 @@ public class DetailsActivity extends AppCompatActivity {
                 update(city, weathers.get(weatherIndex));
             }
         });
-//        ((TextView) findViewById(R.id.currentLocation)).setText("Current Location: " + city.getName().replace("_", " ") + ", " + city.getState().toUpperCase());
-
-//
-//        Bitmap thumbnail = null;
-//        Bitmap normal = null;
-//        try {
-//            thumbnail = new GetImage().execute(story.getThumb_image_url()).get();
-//            normal = new GetImage().execute(story.getNormal_image_url()).get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-//
-//        ((TextView) findViewById(R.id.textViewStoryTitle)).setText(story.getTitle());
-//        ((TextView) findViewById(R.id.textViewData)).setText(story.getAbstractString());
-//        ((TextView) findViewById(R.id.textViewStoryByLine)).setText(story.getByline());
-//        ((ImageView) findViewById(R.id.imageView)).setImageBitmap(normal);
-////        ((ImageView) findViewById(R.id.imageView)).setImageBitmap();
-
     }
 
     public void update(City c, Weather w){

@@ -1,3 +1,11 @@
+//File: MainActivity
+//Homework 05
+//Group 18
+//3-08-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
+
 package com.example.gbl.homework5;
 
 import android.content.Intent;
