@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Weather</string>
+
+    <string name="addCity">Add City</string>
+    <string name="nameFieldHint">City Name (Eg. Charlotte)</string>
+    <string name="stateInitialHint">State Initial (Eg. NC)</string>
+    <string name="saveCityButton">Save City</string>
+    <string name="noCitiesAdded">There are no cities to display. Add using the “+” button from the menu</string>
+    
+    <string name="loadingWeather">Loading Hourly Data</string>
+
+</resources>
