@@ -1,3 +1,10 @@
+//File: Favorites
+//InClass08
+//Group 18
+//3-14-2016
+//Praveenkumar Sangalad
+//Michael Pedersen
+//Gabriel Lima
 package com.github.baocin.inclass08;
 
 import android.support.v7.app.AppCompatActivity;

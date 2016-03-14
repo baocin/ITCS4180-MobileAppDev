@@ -1,10 +1,10 @@
 //File: FeedReader
-//InClass 06
-//2-22-2016
+//InClass08
+//Group 18
+//3-14-2016
 //Praveenkumar Sangalad
 //Michael Pedersen
 //Gabriel Lima
-
 package com.github.baocin.inclass08;
 
 import org.xmlpull.v1.XmlPullParser;
