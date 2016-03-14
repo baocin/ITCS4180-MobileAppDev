@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">InClass08</string>
+    <string-array name="topics">
+        <item>Top Stories</item>
+        <item>World</item>
+        <item>UK</item>
+        <item>Business</item>
+        <item>Politics</item>
+        <item>Health</item>
+        <item>Education &amp; Family</item>
+        <item>Science &amp; Environment</item>
+        <item>Technology</item>
+        <item>Entertainment &amp; Arts</item>
+        <item>Favorites</item>
+    </string-array>
+</resources>
