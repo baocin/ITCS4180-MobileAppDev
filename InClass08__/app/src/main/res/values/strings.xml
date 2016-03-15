@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">InClass07</string>
+    <string name="submitButton">Submit</string>
+    <string name="empty" />
+    <string name="thisIsHardCoded">Abstract</string>
+    <string name="show_bookmarks">Show Bookmarks</string>
+    <string name="clear_bookmarks">Clear All Bookmarks</string>
+    <string-array name="sections">
+        <item>home</item>
+        <item>world</item>
+        <item> national</item>
+        <item> politics</item>
+        <item> nyregion</item>
+        <item> business</item>
+        <item> opinion</item>
+        <item> technology</item><item>
+    science</item>
+        <item> health</item>
+        <item> sports</item>
+        <item> arts</item>
+        <item> fashion</item>
+        <item> dining</item>
+        <item> travel</item>
+        <item> magazine</item>
+        <item> realestate</item>
+
+    </string-array>
+</resources>

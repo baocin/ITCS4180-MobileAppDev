@@ -21,8 +21,6 @@ import com.j256.ormlite.table.TableUtils;
 
 /**
  * Database helper which creates and upgrades the database and provides the DAOs for the app.
- *
- *
  */
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
