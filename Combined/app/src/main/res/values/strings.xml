@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Combined</string>
+    <string name="actionbar_item_2">Clear Bookmarks</string>
+    <string name="actionbar_item_1">Add Bookmark</string>
+</resources>

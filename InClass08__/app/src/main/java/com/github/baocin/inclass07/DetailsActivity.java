@@ -31,7 +31,6 @@ public class DetailsActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.textViewData)).setText(story.getAbstractString());
         ((TextView) findViewById(R.id.textViewStoryByLine)).setText(story.getByline());
         ((ImageView) findViewById(R.id.imageView)).setImageBitmap(normal);
-//        ((ImageView) findViewById(R.id.imageView)).setImageBitmap();
 
     }
 }
