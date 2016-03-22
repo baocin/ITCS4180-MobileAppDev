@@ -1,6 +1,7 @@
 package com.github.baocin.inclass07;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class StoryAdapter extends ArrayAdapter<Story> {
 
             holder = new ViewHolder();
             holder.thumb = (ImageView) convertView.findViewById(R.id.storiesThumbnail);
+            holder.bookmark = (ImageView) convertView.findViewById(R.id.bookmark);
             holder.title = (TextView) convertView.findViewById(R.id.newsTitle);
             holder.date = (TextView) convertView.findViewById(R.id.newsDate);
             convertView.setTag(holder);
@@ -53,13 +55,32 @@ public class StoryAdapter extends ArrayAdapter<Story> {
         holder = (ViewHolder) convertView.getTag();
 
         ImageView tb = holder.thumb;
+        ImageView bm = holder.bookmark;
         TextView title = holder.title;
         TextView date = holder.date;
 
         title.setText(stories.get(position).getTitle());
 
+
+        Story isInDatabase = MainActivity.dm.getStory(stories.get(position).getAbstractString());
+
+        if (isInDatabase != null && stories.get(position).getTitle().equals(isInDatabase.getTitle())) {
+            Log.d("isindatabase", isInDatabase + "");
+
+            bm.setImageResource(R.drawable.bookmark_filled);
+        }
+
+
         date.setText(stories.get(position).getCreated_date());
-        Picasso.with(c).load(stories.get(position).getThumb_image_url()).into(tb);
+
+
+//        Log.d("img", stories.get(position).getThumb_image_url() + "");
+        if (stories.get(position).getThumb_image_url() == null){
+//            Picasso.with(c).load(R.drawable.none).into(tb);
+            Picasso.with(c).load(stories.get(position).getNormal_image_url()).into(tb);
+        }else {
+            Picasso.with(c).load(stories.get(position).getThumb_image_url()).into(tb);
+        }
 
         return convertView;
     }
@@ -69,5 +90,6 @@ public class StoryAdapter extends ArrayAdapter<Story> {
         ImageView thumb;
         TextView title;
         TextView date;
+        ImageView bookmark;
     }
 }

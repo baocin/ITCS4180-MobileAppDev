@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
@@ -42,9 +43,12 @@ public class GetTopStoriesData extends AsyncTask<String, Void, ArrayList<Story>>
     final String apiKey = "144002450f6f2c23673be6692276975d:7:74582505";
     private final TopStories context;
     private final RelativeLayout searchLayout;
+    StoryAdapter a;
+    private String category;
 
-    public GetTopStoriesData(TopStories c, RelativeLayout rl) {
+    public GetTopStoriesData(TopStories c, RelativeLayout rl, StoryAdapter adapter) {
         context = c;
+        a = adapter;
         searchLayout = rl;
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
@@ -61,9 +65,9 @@ public class GetTopStoriesData extends AsyncTask<String, Void, ArrayList<Story>>
     protected void onPostExecute(ArrayList<Story> stories) {
         final ArrayList<Story> stories2 = stories;
 
-        StoryAdapter adapter = new StoryAdapter(searchLayout.getContext(), R.layout.storyitem, stories);
+        a = new StoryAdapter(searchLayout.getContext(), R.layout.storyitem, stories);
         ListView storiesLV = (ListView) searchLayout.findViewById(R.id.listView);
-        storiesLV.setAdapter(adapter);
+        storiesLV.setAdapter(a);
 
         storiesLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -71,6 +75,50 @@ public class GetTopStoriesData extends AsyncTask<String, Void, ArrayList<Story>>
                 Intent i = new Intent(searchLayout.getContext(), DetailsActivity.class);
                 i.putExtra("story", stories2.get(position));
                 context.startActivity(i);
+            }
+        });
+
+        storiesLV.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Story story = stories2.get(position);
+                Log.d("ma", story.get_id() + "");
+                Story isInDatabase = MainActivity.dm.getStory(story.getAbstractString());
+                if (isInDatabase == null) {
+                    //Not there, add it
+                    MainActivity.dm.saveStory(story);
+//                    Log.d("saved story", story.toString());
+
+//                    ArrayList<Story> newStories = new ArrayList<Story>();
+//                    newStories.addAll(MainActivity.dm.getAllStories(category));
+                    a = new StoryAdapter(searchLayout.getContext(), R.layout.storyitem, stories2);
+                    ListView storiesLV = (ListView) searchLayout.findViewById(R.id.listView);
+                    storiesLV.setAdapter(a);
+
+//                    if (a != null) {
+//
+//                        a.clear();
+//                        a.addAll(newStories);
+//                        a.notifyDataSetChanged();
+//                    }
+                    Toast.makeText(context, "Bookmark Added", Toast.LENGTH_SHORT).show();
+                    return true;
+                } else {
+                    //in database, render filled bookmark
+                    MainActivity.dm.deleteStory(story);
+
+                    a = new StoryAdapter(searchLayout.getContext(), R.layout.storyitem, stories2);
+                    ListView storiesLV = (ListView) searchLayout.findViewById(R.id.listView);
+                    storiesLV.setAdapter(a);
+
+
+                    Toast.makeText(context, "Bookmark Deleted", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+//                Intent i = new Intent(searchLayout.getContext(), DetailsActivity.class);
+//                i.putExtra("story", stories2.get(position));
+//                context.startActivity(i);
+//                return false;
             }
         });
 
@@ -88,6 +136,7 @@ public class GetTopStoriesData extends AsyncTask<String, Void, ArrayList<Story>>
     @Override
     protected ArrayList<Story> doInBackground(String... params) {
         try {
+            category = params[0];
             RequestParams rp = new RequestParams(apiURL + params[0] + ".json");
 //            rp.addParam("response-format", ".json");
             rp.addParam("api-key", apiKey);

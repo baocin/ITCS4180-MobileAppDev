@@ -37,10 +37,11 @@ public class DataManager {
         return storyDao.delete(n);
     }
 
-    public Story getStory(long id){
+    public Story getStory(String id){
         return storyDao.get(id);
     }
 
+    public int countStoriesInCategory(String cat){ return storyDao.countStoriesInCategory(cat);}
     public List<Story> getAllStories(String cat) {return storyDao.getAll(cat);}
     public boolean removeAllStories(String cat) {return storyDao.removeAll(cat);}
 

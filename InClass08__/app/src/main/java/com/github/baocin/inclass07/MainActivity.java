@@ -1,5 +1,5 @@
-//File: GetGeneralMovieData
-//InClass07
+//File: MainActivity
+//InClass08
 //Group 18
 //2-27-2016
 //Praveenkumar Sangalad
@@ -17,9 +17,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     public static DataManager dm;
     String topic = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +33,18 @@ public class MainActivity extends AppCompatActivity {
         dm = new DataManager(this);
 
         Spinner spinner = (Spinner)findViewById(R.id.topicSpinner);
-        getResources().getStringArray(R.array.sections);
-
-
-
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sections
-                , android.R.layout.simple_spinner_item);
-
-        //
-
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    // Apply the adapter to the spinner
+        ArrayList<String> st = new ArrayList<String>();
+        st.addAll(Arrays.asList(getResources().getStringArray(R.array.sections)));
+        ArrayList<String> finalList = new ArrayList<>();
+        for (String s : st){
+            int count = MainActivity.dm.countStoriesInCategory(s);
+            if (count > 0){
+                finalList.add(s + "[" + count + "]");
+            }else{
+                finalList.add(s);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, finalList);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -60,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.submitButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (topic.equals("")){
+                if (topic.equals("")) {
                     Toast.makeText(getApplicationContext(), "Please select a section!", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Intent i = new Intent(MainActivity.this, TopStories.class);
                     i.putExtra("section", topic);
                     startActivity(i);
@@ -72,5 +76,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Spinner spinner = (Spinner)findViewById(R.id.topicSpinner);
+        ArrayList<String> st = new ArrayList<String>();
+        st.addAll(Arrays.asList(getResources().getStringArray(R.array.sections)));
+        ArrayList<String> finalList = new ArrayList<>();
+        for (String s : st){
+            int count = MainActivity.dm.countStoriesInCategory(s);
+            if (count > 0){
+                finalList.add(s + "[" + count + "]");
+            }else{
+                finalList.add(s);
+            }
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, finalList);
+        spinner.setAdapter(adapter);
     }
 }

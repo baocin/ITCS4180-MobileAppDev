@@ -33,5 +33,12 @@ public class DetailsActivity extends AppCompatActivity {
         ((ImageView) findViewById(R.id.imageView)).setImageBitmap(normal);
 //        ((ImageView) findViewById(R.id.imageView)).setImageBitmap();
 
+        Story isInDatabase = MainActivity.dm.getStory(story.getAbstractString());
+        if (isInDatabase != null) {
+            ((ImageView) findViewById(R.id.bookmarkStatus)).setImageResource(R.drawable.bookmark_filled);
+        }else{
+            ((ImageView) findViewById(R.id.bookmarkStatus)).setImageResource(R.drawable.bookmark_empty);
+        }
+
     }
 }
