@@ -1,0 +1,24 @@
+# --table-start--
+dataClass=com.github.baocin.inclass08.News
+tableName=News
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=storyTitle
+columnName=storyTitle
+# --field-end--
+# --field-start--
+fieldName=category
+columnName=category
+# --field-end--
+# --field-start--
+fieldName=thumbnail
+columnName=thumbnail
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

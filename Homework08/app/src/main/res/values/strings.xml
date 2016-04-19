@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Homework08</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+    <string name="name">First and Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="editProfile">Edit Profile</string>
+    <string name="logout">Logout</string>
+    <string name="update">Update</string>
+
+</resources>

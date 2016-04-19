@@ -1,0 +1,21 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.example.contactsApp"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.example.contactsApp"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "com.example.contactsApp"
+        }
+    },
+    "dependent_plugins": {}
+}

@@ -1,0 +1,109 @@
+
+<!-- We don't need full layout here, because this page will be parsed with Ajax-->
+<!-- Top Navbar-->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span>Back</span></a></div>
+    <div class="center sliding">Form</div>
+    <div class="right">
+      <!-- Right link contains only icon - additional "icon-only" class--><a href="#" class="link icon-only open-panel"> <i class="icon icon-bars"></i></a>
+    </div>
+  </div>
+</div>
+<div class="pages">
+  <!-- Page, data-page contains page name-->
+  <div data-page="form" class="page">
+    <!-- Scrollable page content-->
+    <div class="page-content">
+      <div class="content-block-title">Form Example</div>
+      <div class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">Name</div>
+                <div class="item-input">
+                  <input id="name_tf" type="text" placeholder="Your name" class="name-field"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-email"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">E-mail</div>
+                <div class="item-input">
+                  <input type="email" placeholder="E-mail" class="email-field"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-url"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">URL</div>
+                <div class="item-input">
+                  <input type="url" placeholder="URL" class="url-field"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-tel"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">Mobile</div>
+                <div class="item-input">
+                  <input type="tel" placeholder="Phone" class="mobile-field"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-tel"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">Work</div>
+                <div class="item-input">
+                  <input type="tel" placeholder="Phone" class="work-field"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-tel"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">Home</div>
+                <div class="item-input">
+                  <input type="tel" placeholder="Phone" class="home-field"/>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner"> 
+                <div class="item-title label">Picture</div>
+                <div class="item-input">
+                  <input type="text" value="" placeholder="" class="picture-field" id="imageData"/>
+                  <a href="#" class="button button-small button-fill color-blue" id="getImage">Get Picture</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="content-block">
+        <div class="row">
+          <div class="col-50"><a href="index.html" id="cancelButton" class="button button-big button-fill color-red">Cancel</a></div>
+          <div class="col-50"><a href="#" class="button button-big button-fill color-green submit-button">Submit</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
